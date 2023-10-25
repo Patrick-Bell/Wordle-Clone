@@ -9,13 +9,45 @@
   <script src="script.js" defer></script>
   <title>Wordle Clone</title>
 </head>
-<body>
+<body class="lightmode">
     <div class="divider"></div>
     <div class="navbar">
             <i class="bi bi-info-square-fill"></i>
             <h2>Wordle</h2>
-            <i class="bi bi-sun-fill"></i>   
+            <i class="bi bi-moon-fill" id="icon"></i>   
         </div>
+      <dialog class="modal" id="modal">
+        <i class="bi bi-x-square-fill"></i>
+        <h3>How To Play</h3>
+        <p class="title-info">Guess the Wordle in 6 tries.</p>
+          <li>Each guess must be a valid 5-letter word.</li>
+          <li>The color of the tiles will change to show how close your guess was to the word.</li>
+          <p class="example"><span>Examples</span></p>
+          <div class="info-grid">
+            <div class="tile-info" data-state="correct">W</div>
+            <div class="tile-info">E</div>
+            <div class="tile-info">A</div>
+            <div class="tile-info">R</div>
+            <div class="tile-info">Y</div>
+          </div>
+      <p><span>W</span> is in the word and in the correct spot.</p>
+      <div class="info-grid">
+        <div class="tile-info">P</div>
+        <div class="tile-info" data-state="wrong-location">I</div>
+        <div class="tile-info">L</div>
+        <div class="tile-info">L</div>
+        <div class="tile-info">S</div>
+      </div>
+     <p><span>I</span> is in the word but in the wrong spot.</p>
+      <div class="info-grid">
+       <div class="tile-info">V</div>
+       <div class="tile-info">A</div>
+       <div class="tile-info">G</div>
+       <div class="tile-info" data-state="wrong">U</div>
+       <div class="tile-info">E</div>
+      </div>
+    <p><span>U</span> is not in the word in any spot.</p>
+      </dialog>
     <div class="divider"></div>
   <div class="alert-container" data-alert-container></div>
   <div data-guess-grid class="guess-grid">
