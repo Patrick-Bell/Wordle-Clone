@@ -1,16 +1,14 @@
 const targetWords = []
 const dictionary = []
-  
+
   const WORD_LENGTH = 5
   const FLIP_ANIMATION_DURATION = 500
   const DANCE_ANIMATION_DURATION = 500
   const keyboard = document.querySelector("[data-keyboard]")
   const alertContainer = document.querySelector("[data-alert-container]")
   const guessGrid = document.querySelector("[data-guess-grid]")
-  const offsetFromDate = new Date(2022, 0, 1)
-  const msOffset = Date.now() - offsetFromDate
-  const dayOffset = msOffset / 1000 / 60 / 60 / 24
-  const targetWord = targetWords[Math.floor(dayOffset)]
+  const randomIndex = Math.floor(Math.random() * targetWords.length);
+  const targetWord = targetWords[randomIndex]
   
   startInteraction()
   
@@ -77,25 +75,35 @@ const dictionary = []
   }
   
   function submitGuess() {
-    const activeTiles = [...getActiveTiles()]
+    const activeTiles = [...getActiveTiles()];
     if (activeTiles.length !== WORD_LENGTH) {
-      showAlert("Not enough letters")
-      shakeTiles(activeTiles)
-      return
+      showAlert("Not enough letters");
+      shakeTiles(activeTiles);
+      return;
     }
   
     const guess = activeTiles.reduce((word, tile) => {
-      return word + tile.dataset.letter
-    }, "")
+      return word + tile.dataset.letter;
+    }, "");
   
     if (!dictionary.includes(guess)) {
-      showAlert("Not in word list")
-      shakeTiles(activeTiles)
-      return
+      showAlert("Not in word list");
+      shakeTiles(activeTiles);
+      return;
     }
   
-    stopInteraction()
-    activeTiles.forEach((...params) => flipTile(...params, guess))
+    // Set the data-guessed attribute to "true" on the active tiles so the tiles can change to white...
+    activeTiles.forEach(tile => {
+      tile.dataset.guessed = "true";
+    });
+  
+    // Change text color of the active tiles to white once the guess has been submitted (=true)
+    activeTiles.forEach(tile => {
+      tile.style.color = "white";
+    });
+  
+    stopInteraction();
+    activeTiles.forEach((...params) => flipTile(...params, guess));
   }
   
   function flipTile(tile, index, array, guess) {
@@ -196,3 +204,36 @@ const dictionary = []
       }, (index * DANCE_ANIMATION_DURATION) / 5)
     })
   }
+
+
+  // Modal pop up
+  const modal = document.querySelector(".modal")
+  const openModal = document.querySelector(".bi-info-square-fill")
+  const closeModal = document.querySelector(".bi-x-square-fill")
+
+  openModal.addEventListener("click", () => {
+    modal.showModal();
+  })
+
+  closeModal.addEventListener("click", () => {
+    modal.close();
+  })
+
+
+  //dark and light mode
+  const icon = document.getElementById("icon");
+  const body = document.body;
+  
+  icon.onclick = () => {
+    body.classList.toggle("lightmode");
+    if (body.classList.contains("lightmode")) {
+      icon.classList.remove("bi-sun-fill");
+      icon.classList.add("bi-moon-fill");
+      icon.style.color = "black"; // Set icon color to black in light mode
+    } else {
+      icon.classList.add("bi-sun-fill");
+      icon.classList.remove("bi-moon-fill");
+      icon.style.color = "white"; // Set icon color to white in dark mode
+    }
+  };
+  
