@@ -180,8 +180,8 @@
     font-size: 30px;
     cursor: pointer;
   }
-  .bi-sun-fill{
-    color: white;
+  #icon{
+    color: black;
     font-size: 30px;
     cursor: pointer;
   }
@@ -240,4 +240,117 @@
         gap: 0.25em;
         margin-bottom: 2em;
     }
+}
+.bi-x-square-fill{
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  padding: 5px;
+}
+.modal{
+  min-width: 40%;
+  min-height: 90%;
+  border: none;
+  outline: none;
+  background-color: hsl(240, 2%, 1%);;
+  padding: 40px;
+}
+h3, p, li{
+  color: white;
+}
+p{
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+h3{
+  font-size: 36px;
+  margin-bottom: 0;
+}
+li{
+  margin-top: 10px;
+}
+.example{
+  margin: 0;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.title-info{
+  font-size: 28px;
+}
+.info-grid {
+  display: grid;
+  justify-content: left;
+  align-content: center;
+ /* flex-grow: 1; */
+  grid-template-columns: repeat(5, 3em);
+  grid-template-rows: repeat(1, 3em);
+  gap: .25em;
+}
+.tile-info {
+  font-size: 2em;
+  color: white;
+  border: .05em solid hsl(240, 2%, 23%);
+  text-transform: uppercase;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tile-info[data-state="correct"] {
+  border: none;
+  background-color: hsl(115, 29%, 43%);
+}
+.tile-info[data-state="wrong"] {
+  border: none;
+  background-color: hsl(240, 2%, 23%);
+}
+.tile-info[data-state="wrong-location"] {
+  border: none;
+  background-color: hsl(49, 51%, 47%);
+}
+span{
+  font-weight: 700;
+}
+body.lightmode {
+  background-color: rgb(255, 255, 255);
+}
+body.lightmode p{
+  color: black;
+}
+body.lightmode h3{
+  color: black;
+}
+body.lightmode h2{
+  color: black;
+}
+body.lightmode li{
+  color: black;
+}
+body.lightmode .divider{
+  background: black;
+}
+body.lightmode .bi-info-square-fill{
+  color: black;
+}
+body.lightmode .tile{
+  color: black;
+}
+body.lightmode .alert{
+  background-color: black;
+  color: white;
+}
+body.lightmode .modal{
+  background-color: white;
+}
+body.lightmode .bi-x-square-fill{
+  color: black;
+}
+body.lightmode .tile[data-state="active"] {
+  color: black;
+}
+body.lightmode .tile[data-guessed="true"] {
+  color: white;
 }
