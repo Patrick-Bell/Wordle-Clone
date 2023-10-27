@@ -14,8 +14,27 @@
     <div class="navbar">
             <i class="bi bi-info-square-fill"></i>
             <h2>Wordle</h2>
-            <i class="bi bi-moon-fill" id="icon"></i>   
+            <i class="bi bi-moon-fill lightmode" id="icon"></i>   
         </div>
+
+        
+      <dialog class="win-modal" id="win-modal">
+        <div class="win-top">
+          <i class="bi bi-trophy-fill"></i>
+          <h2>You Win!</h2>
+        </div>
+        <button class="next-game">Next Game!</button>
+      </dialog>
+
+      <dialog class="lose-modal" id="lose-modal">
+        <div class="lose-top">
+          <i class="bi bi-emoji-frown-fill"></i>
+          <h2>You Lose!</h2>
+        </div>
+        <button class="next-game">Next Game!</button>
+      </dialog>
+
+
       <dialog class="modal" id="modal">
         <i class="bi bi-x-square-fill"></i>
         <h3>How To Play</h3>
