@@ -1,14 +1,17 @@
 const targetWords = []
 const dictionary = []
 
-  const WORD_LENGTH = 5
+const WORD_LENGTH = 5
   const FLIP_ANIMATION_DURATION = 500
   const DANCE_ANIMATION_DURATION = 500
-  const keyboard = document.querySelector("[data-keyboard]")
-  const alertContainer = document.querySelector("[data-alert-container]")
+  let keyboard = document.querySelector("[data-keyboard]")
+  let alertContainer = document.querySelector("[data-alert-container]")
   const guessGrid = document.querySelector("[data-guess-grid]")
-  const randomIndex = Math.floor(Math.random() * targetWords.length);
-  const targetWord = targetWords[randomIndex]
+  let randomIndex = Math.floor(Math.random() * targetWords.length);
+  let targetWord = targetWords[randomIndex]
+  const winModal = document.querySelector(".win-modal");
+  const loseModal = document.querySelector(".lose-modal");
+  console.log(targetWord)
   
   startInteraction()
   
@@ -180,14 +183,24 @@ const dictionary = []
       showAlert("You Win", 5000)
       danceTiles(tiles)
       stopInteraction()
-      return
+
+      setTimeout(function() {
+        winModal.showModal();// This modal will change to something like win-modal.showModal()
+      }, 2000);
+      
+      return;
     }
   
     const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
     if (remainingTiles.length === 0) {
       showAlert(targetWord.toUpperCase(), null)
       stopInteraction()
+
+      setTimeout(function() {
+        loseModal.showModal();
+      }, 2000);
     }
+    return;
   }
   
   function danceTiles(tiles) {
@@ -204,10 +217,93 @@ const dictionary = []
       }, (index * DANCE_ANIMATION_DURATION) / 5)
     })
   }
+  
+
+const body = document.body;
+const isLightMode = body.classList.contains("lightmode");
+const tiles = guessGrid.querySelectorAll("[data-letter]");
+
+
+function setupNewGame() {
+  const winModal = document.querySelector(".win-modal");
+  const loseModal = document.querySelector(".lose-modal");
+  const body = document.body;
+  const modeToggle = document.getElementById("icon");
+  const guessGrid = document.querySelector(".guess-grid");
+
+  winModal.querySelector(".next-game").addEventListener("click", newGame);
+  loseModal.querySelector(".next-game").addEventListener("click", newGame);
+
+  function updateTextColor() {
+    const isLightMode = body.classList.contains("lightmode");
+    const tiles = guessGrid.querySelectorAll("[data-letter]");
+    tiles.forEach(tile => {
+      tile.style.color = isLightMode ? "white" : "black";
+      
+    });
+  }
+
+  function newGame() {
+    resetBoard();
+    winModal.close();
+    loseModal.close();
+    targetWord = targetWords[Math.floor(Math.random() * targetWords.length)];
+    console.log(targetWord);
+    wordGuessed = false;
+
+    resetKeyboardButtons();
+    updateTextColor();
+    startInteraction();
+  }
+
+
+  function resetBoard() {
+    const tiles = guessGrid.querySelectorAll("[data-letter]");
+    tiles.forEach(tile => {
+      tile.textContent = "";
+      delete tile.dataset.state;
+      delete tile.dataset.letter;
+    });
+
+    startInteraction();
+  }
+
+  function resetKeyboardButtons() {
+    const keyboardButtons = document.querySelectorAll("[data-key]");
+    keyboardButtons.forEach(button => {
+      button.classList.remove("correct", "wrong-location", "wrong");
+    });
+  }
+
+  modeToggle.addEventListener("click", function () {
+    body.classList.toggle("lightmode");
+    if (body.classList.contains("lightmode")) {
+      modeToggle.classList.remove("bi-sun-fill");
+      modeToggle.classList.add("bi-moon-fill");
+      modeToggle.style.color = "black";
+    } else {
+      modeToggle.classList.add("bi-sun-fill");
+      modeToggle.classList.remove("bi-moon-fill");
+      modeToggle.style.color = "white";
+    }
+
+
+    const tiles = guessGrid.querySelectorAll("[data-letter]");
+    const isLightMode = body.classList.contains("lightmode");
+    tiles.forEach(tile => {
+      tile.style.color = isLightMode ? "black" : "white";
+    });
+  });
+}
+
+setupNewGame();
+
+  
 
 
   // Modal pop up
   const modal = document.querySelector(".modal")
+
   const openModal = document.querySelector(".bi-info-square-fill")
   const closeModal = document.querySelector(".bi-x-square-fill")
 
@@ -220,20 +316,4 @@ const dictionary = []
   })
 
 
-  //dark and light mode
-  const icon = document.getElementById("icon");
-  const body = document.body;
-  
-  icon.onclick = () => {
-    body.classList.toggle("lightmode");
-    if (body.classList.contains("lightmode")) {
-      icon.classList.remove("bi-sun-fill");
-      icon.classList.add("bi-moon-fill");
-      icon.style.color = "black"; // Set icon color to black in light mode
-    } else {
-      icon.classList.add("bi-sun-fill");
-      icon.classList.remove("bi-moon-fill");
-      icon.style.color = "white"; // Set icon color to white in dark mode
-    }
-  };
-  
+
