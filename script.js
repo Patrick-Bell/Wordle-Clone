@@ -1,7 +1,7 @@
 const targetWords = []
 const dictionary = []
 
-const WORD_LENGTH = 5
+  const WORD_LENGTH = 5
   const FLIP_ANIMATION_DURATION = 500
   const DANCE_ANIMATION_DURATION = 500
   let keyboard = document.querySelector("[data-keyboard]")
@@ -193,7 +193,7 @@ const WORD_LENGTH = 5
   
     const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
     if (remainingTiles.length === 0) {
-      showAlert(targetWord.toUpperCase(), null)
+      showAlert(targetWord.toUpperCase(), 2000)
       stopInteraction()
 
       setTimeout(function() {
@@ -219,85 +219,74 @@ const WORD_LENGTH = 5
   }
   
 
-const body = document.body;
-const isLightMode = body.classList.contains("lightmode");
-const tiles = guessGrid.querySelectorAll("[data-letter]");
-
-
-function setupNewGame() {
-  const winModal = document.querySelector(".win-modal");
-  const loseModal = document.querySelector(".lose-modal");
   const body = document.body;
+  const tiles = document.querySelectorAll(".tile");
   const modeToggle = document.getElementById("icon");
-  const guessGrid = document.querySelector(".guess-grid");
-
-  winModal.querySelector(".next-game").addEventListener("click", newGame);
-  loseModal.querySelector(".next-game").addEventListener("click", newGame);
-
-  function updateTextColor() {
-    const isLightMode = body.classList.contains("lightmode");
-    const tiles = guessGrid.querySelectorAll("[data-letter]");
-    tiles.forEach(tile => {
-      tile.style.color = isLightMode ? "white" : "black";
-      
-    });
-  }
-
-  function newGame() {
-    resetBoard();
-    winModal.close();
-    loseModal.close();
-    targetWord = targetWords[Math.floor(Math.random() * targetWords.length)];
-    console.log(targetWord);
-    wordGuessed = false;
-
-    resetKeyboardButtons();
-    updateTextColor();
-    startInteraction();
-  }
-
-
-  function resetBoard() {
-    const tiles = guessGrid.querySelectorAll("[data-letter]");
-    tiles.forEach(tile => {
-      tile.textContent = "";
-      delete tile.dataset.state;
-      delete tile.dataset.letter;
-    });
-
-    startInteraction();
-  }
-
-  function resetKeyboardButtons() {
-    const keyboardButtons = document.querySelectorAll("[data-key]");
-    keyboardButtons.forEach(button => {
-      button.classList.remove("correct", "wrong-location", "wrong");
-    });
-  }
-
-  modeToggle.addEventListener("click", function () {
-    body.classList.toggle("lightmode");
-    if (body.classList.contains("lightmode")) {
-      modeToggle.classList.remove("bi-sun-fill");
-      modeToggle.classList.add("bi-moon-fill");
-      modeToggle.style.color = "black";
-    } else {
-      modeToggle.classList.add("bi-sun-fill");
-      modeToggle.classList.remove("bi-moon-fill");
-      modeToggle.style.color = "white";
+  
+  function setupNewGame() {
+    const winModal = document.querySelector(".win-modal");
+    const loseModal = document.querySelector(".lose-modal");
+  
+    winModal.querySelector(".next-game").addEventListener("click", newGame);
+    loseModal.querySelector(".next-game").addEventListener("click", newGame);
+  
+    function updateTextColor() {
+      const isLightMode = body.classList.contains("lightmode");
+      const textcolor = isLightMode ? "black" : "white";
+      tiles.forEach(tile => {
+        tile.style.color = textcolor;
+      });
     }
-
-
-    const tiles = guessGrid.querySelectorAll("[data-letter]");
-    const isLightMode = body.classList.contains("lightmode");
-    tiles.forEach(tile => {
-      tile.style.color = isLightMode ? "black" : "white";
+  
+    function newGame() {
+      resetBoard();
+      winModal.close();
+      loseModal.close();
+      targetWord = targetWords[Math.floor(Math.random() * targetWords.length)];
+      console.log(targetWord);
+      wordGuessed = false;
+      updateTextColor();
+      resetKeyboardButtons();
+      startInteraction();
+    }
+  
+    function resetBoard() {
+      tiles.forEach(tile => {
+        tile.textContent = "";
+        delete tile.dataset.state;
+        delete tile.dataset.letter;
+      });
+      updateTextColor();
+      startInteraction();
+    }
+  
+    function resetKeyboardButtons() {
+      const keyboardButtons = document.querySelectorAll("[data-key]");
+      keyboardButtons.forEach(button => {
+        button.classList.remove("correct", "wrong-location", "wrong");
+      });
+    }
+  
+    updateTextColor(); // Update text color when setting up the game
+  
+    modeToggle.addEventListener("click", function () {
+      body.classList.toggle("lightmode");
+      if (body.classList.contains("lightmode")) {
+        modeToggle.classList.remove("bi-sun-fill");
+        modeToggle.classList.add("bi-moon-fill");
+        modeToggle.style.color = "black";
+      } else {
+        modeToggle.classList.add("bi-sun-fill");
+        modeToggle.classList.remove("bi-moon-fill");
+        modeToggle.style.color = "white";
+      }
+  
+      updateTextColor();
     });
-  });
-}
-
-setupNewGame();
-
+  }
+  
+  setupNewGame();
+  
   
 
 
@@ -305,7 +294,7 @@ setupNewGame();
   const modal = document.querySelector(".modal")
 
   const openModal = document.querySelector(".bi-info-square-fill")
-  const closeModal = document.querySelector(".bi-x-square-fill")
+  const closeModal = document.querySelector("#close-modal")
 
   openModal.addEventListener("click", () => {
     modal.showModal();
@@ -316,4 +305,14 @@ setupNewGame();
   })
 
 
+  const settingModal = document.querySelector(".setting-modal")
+  const openSettingModal = document.querySelector(".bi-gear-fill")
+  const closeSettingModal = document.querySelector("#close-setting-modal")
 
+  openSettingModal.addEventListener("click", () => {
+    settingModal.showModal();
+  })
+
+  closeSettingModal.addEventListener("click", () => {
+    settingModal.close();
+  })
