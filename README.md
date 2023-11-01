@@ -8,11 +8,12 @@ Wordle is a web-based word game. Players have six attempts to guess a five-lette
 [x] - Track number of guesses with a total of 6<br>
 [x] - Generates a new word from a list of over 10,000 words every new game/day<br>
 [x] - Web/Mobile Responsive<br>
-[x] - Light/Dark mode
+[x] - Light/Dark mode<br>
 
 **Technologies**<br>
-HTML, CSS, JavaScript
+HTML, CSS, JavaScript<br>
 
 **Future Updates**<br>
 [] - Users can start a new game without refreshing<br>
 [] - Add a more in depth settings menu where users can select 1 other game<br>
+[] - Stat tracking (games played, games won, win percentage, etc).
