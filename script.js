@@ -1,6 +1,48 @@
-const targetWords = []
-const dictionary = []
+  // Your JavaScript code here
 
+const targetWords = ["apple", "blues"]
+
+const dictionary = ["apple", "blues"]
+  
+  // Initialize stats
+let stats = JSON.parse(localStorage.getItem('wordleStats')) || {
+  gamesPlayed: 1,
+  gamesWon: 0,
+  currentStreak: 0,
+  maxStreak: 0,
+  winPercentage: 0,
+  // Add more stats as needed
+};
+
+function updateWinPercentage() {
+  if (stats.gamesPlayed === 0) {
+    stats.winPercentage = 0;
+  } else {
+    stats.winPercentage = ((stats.gamesWon / stats.gamesPlayed) * 100).toFixed(2);
+  }
+}
+
+// Call this function whenever you need to update the win percentage
+updateWinPercentage();
+
+// Retrieve UI elements for displaying stats
+const gamesPlayedElement = document.querySelector(".stats-number-games-played");
+const gamesWonElement = document.querySelector(".stats-number-games-won");
+const currentStreakElement = document.querySelector(".stats-number-current-streak");
+const maxStreakElement = document.querySelector(".stats-number-max-streak");
+const winPercentageElement = document.querySelector(".stats-number-win-percentage")
+
+function updateStatsUI() {
+  gamesPlayedElement.textContent = stats.gamesPlayed;
+  gamesWonElement.textContent = stats.gamesWon;
+  currentStreakElement.textContent = stats.currentStreak;
+  maxStreakElement.textContent = stats.maxStreak;
+  winPercentageElement.textContent = stats.winPercentage + " %";
+  updateWinPercentage();
+
+}
+  
+  
   const WORD_LENGTH = 5
   const FLIP_ANIMATION_DURATION = 500
   const DANCE_ANIMATION_DURATION = 500
@@ -12,8 +54,11 @@ const dictionary = []
   const winModal = document.querySelector(".win-modal");
   const loseModal = document.querySelector(".lose-modal");
   console.log(targetWord)
+
+
   
   startInteraction()
+
   
   function startInteraction() {
     document.addEventListener("click", handleMouseClick)
@@ -180,9 +225,28 @@ const dictionary = []
   
   function checkWinLose(guess, tiles) {
     if (guess === targetWord) {
-      showAlert("You Win", 5000)
+      //showAlert("You Win", 5000)
       danceTiles(tiles)
       stopInteraction()
+
+      stats.gamesWon += 1;
+      stats.currentStreak += 1;
+
+      console.log(stats)
+
+    if (stats.currentStreak >= stats.maxStreak) {
+      stats.maxStreak = stats.currentStreak;
+    } else {
+      stats.maxStreak = stats.maxStreak;
+    }
+
+    stats.winPercentage = ((stats.gamesWon / stats.gamesPlayed) * 100).toFixed(2);
+    localStorage.setItem('wordleStats', JSON.stringify(stats));
+
+    updateStatsUI();
+    updateWinPercentage();
+    localStorage.setItem('wordleStats', JSON.stringify(stats));
+
 
       setTimeout(function() {
         winModal.showModal();// This modal will change to something like win-modal.showModal()
@@ -193,8 +257,14 @@ const dictionary = []
   
     const remainingTiles = guessGrid.querySelectorAll(":not([data-letter])")
     if (remainingTiles.length === 0) {
-      showAlert(targetWord.toUpperCase(), 2000)
+      //showAlert(targetWord.toUpperCase(), 2000)
       stopInteraction()
+
+
+      stats.currentStreak = 0;
+      updateWinPercentage();
+      updateStatsUI();
+      localStorage.setItem('wordleStats', JSON.stringify(stats));
 
       setTimeout(function() {
         loseModal.showModal();
@@ -239,6 +309,9 @@ const dictionary = []
     }
   
     function newGame() {
+      stats.gamesPlayed += 1;
+      updateStatsUI();
+      localStorage.setItem('wordleStats', JSON.stringify(stats));
       resetBoard();
       winModal.close();
       loseModal.close();
@@ -288,11 +361,8 @@ const dictionary = []
   setupNewGame();
   
   
-
-
   // Modal pop up
   const modal = document.querySelector(".modal")
-
   const openModal = document.querySelector(".bi-info-square-fill")
   const closeModal = document.querySelector("#close-modal")
 
@@ -316,3 +386,78 @@ const dictionary = []
   closeSettingModal.addEventListener("click", () => {
     settingModal.close();
   })
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Define the variables for stats modal elements
+    const statModal = document.querySelector(".stat-modal");
+    const openStatModal = document.querySelector("#statsicon");
+    const closeStatModal = document.querySelector("#close-stat-modal");
+  
+    // ...
+  
+    // Define the updateStatsModal function
+    function updateStatsModal() {
+      // Fetch the stats from localStorage
+      const storedStats = JSON.parse(localStorage.getItem('wordleStats'));
+  
+      // Check if there are stored stats in localStorage
+      if (storedStats) {
+        // Update the stats modal with the retrieved stats
+        const gamesPlayedStatElement = document.querySelector(".stats-number-games-played");
+        const gamesWonStatElement = document.querySelector(".stats-number-games-won");
+        const currentStreakStatElement = document.querySelector(".stats-number-current-streak");
+        const maxStreakStatElement = document.querySelector(".stats-number-max-streak");
+        const winPercentageStatElement = document.querySelector(".stats-number-win-percentage");
+  
+        gamesPlayedStatElement.textContent = storedStats.gamesPlayed;
+        gamesWonStatElement.textContent = storedStats.gamesWon;
+        currentStreakStatElement.textContent = storedStats.currentStreak;
+        maxStreakStatElement.textContent = storedStats.maxStreak;
+        winPercentageStatElement.textContent = storedStats.winPercentage;
+      }
+    }
+  
+    // ...
+  
+    openStatModal.addEventListener("click", () => {
+      updateStatsModal(); // Update the stats when the modal is opened
+      updateStatsUI();
+      localStorage.setItem('wordleStats', JSON.stringify(stats));
+      statModal.showModal();
+    });
+  
+    closeStatModal.addEventListener("click", () => {
+      statModal.close();
+    });
+  });
+
+const resetStatsButton = document.getElementById("reset-stats-button");
+
+resetStatsButton.addEventListener("click", function () {
+  // Reset the stats object to its initial values
+  stats = {
+    gamesPlayed: 1,
+    gamesWon: 0,
+    currentStreak: 0,
+    maxStreak: 0,
+    winPercentage: 0,
+    // Add more stats as needed
+  };
+
+  // Update the UI to reflect the reset stats
+  gamesPlayedElement.textContent = stats.gamesPlayed;
+  gamesWonElement.textContent = stats.gamesWon;
+  currentStreakElement.textContent = stats.currentStreak;
+  maxStreakElement.textContent = stats.maxStreak;
+  winPercentageElement.textContent = stats.winPercentage;
+
+  // Store the reset stats in localStorage
+  localStorage.setItem('wordleStats', JSON.stringify(stats));
+});
+
+const theWord = document.querySelector(".theword");
+theWord.innerHTML = targetWord;
+
+const loseWord = document.querySelector(".loseword");
+loseWord.innerHTML = targetWord;
