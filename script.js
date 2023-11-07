@@ -1,8 +1,7 @@
-  // Your JavaScript code here
 
-const targetWords = ["apple", "blues"]
+const targetWords = [2,000+ words that the word can be]
 
-const dictionary = ["apple", "blues"]
+const dictionary = [10,000+ words that are valid]
   
   // Initialize stats
 let stats = JSON.parse(localStorage.getItem('wordleStats')) || {
@@ -53,7 +52,13 @@ function updateStatsUI() {
   let targetWord = targetWords[randomIndex]
   const winModal = document.querySelector(".win-modal");
   const loseModal = document.querySelector(".lose-modal");
-  console.log(targetWord)
+  let theWord = document.querySelector(".theword");
+  let loseWord = document.querySelector(".loseword")
+  theWord = targetWord;
+  loseWord = targetWord;
+  let wikiWord = targetWord;
+  console.log(targetWord);
+  console.log(wikiWord);
 
 
   
@@ -120,6 +125,16 @@ function updateStatsUI() {
     lastTile.textContent = ""
     delete lastTile.dataset.state
     delete lastTile.dataset.letter
+  }
+
+  function updateWikiLink() {
+    const wikiSentence = document.querySelector(".wiki");
+    const wikiLoseSentence = document.querySelector(".wikilose");
+    const wikiLearn = "https://en.wikipedia.org/wiki/";
+    theWord.innerHTML = `${targetWord}`
+    loseWord.innerHTML = `${targetWord}`
+    wikiSentence.innerHTML = `<strong>Learn More:</strong> <a href="${wikiLearn}${wikiWord}" target="_blank">Click Here!</a>`;
+    wikiLoseSentence.innerHTML = `<strong>Learn More:</strong> <a href="${wikiLearn}${wikiWord}" target="_blank">Click Here!</a>`;
   }
   
   function submitGuess() {
@@ -246,10 +261,14 @@ function updateStatsUI() {
     updateStatsUI();
     updateWinPercentage();
     localStorage.setItem('wordleStats', JSON.stringify(stats));
+    updateWikiLink()
+
 
 
       setTimeout(function() {
-        winModal.showModal();// This modal will change to something like win-modal.showModal()
+        winModal.showModal();
+        document.querySelector(".theword").textContent = targetWord;
+        // This modal will change to something like win-modal.showModal()
       }, 2000);
       
       return;
@@ -259,18 +278,21 @@ function updateStatsUI() {
     if (remainingTiles.length === 0) {
       //showAlert(targetWord.toUpperCase(), 2000)
       stopInteraction()
+      console.log("user losing the game")
 
 
       stats.currentStreak = 0;
       updateWinPercentage();
       updateStatsUI();
       localStorage.setItem('wordleStats', JSON.stringify(stats));
+      updateWikiLink();
+
 
       setTimeout(function() {
         loseModal.showModal();
+        document.querySelector(".loseword").textContent = targetWord;
       }, 2000);
     }
-    return;
   }
   
   function danceTiles(tiles) {
@@ -316,12 +338,18 @@ function updateStatsUI() {
       winModal.close();
       loseModal.close();
       targetWord = targetWords[Math.floor(Math.random() * targetWords.length)];
+      wikiWord = targetWord; // Update wikiWord to match targetWord
+      theWord = targetWord
       console.log(targetWord);
+      console.log(wikiWord);
       wordGuessed = false;
+      updateWikiLink();
       updateTextColor();
       resetKeyboardButtons();
       startInteraction();
+
     }
+
   
     function resetBoard() {
       tiles.forEach(tile => {
@@ -358,6 +386,7 @@ function updateStatsUI() {
     });
   }
   
+
   setupNewGame();
   
   
@@ -431,13 +460,15 @@ function updateStatsUI() {
       statModal.close();
     });
   });
+  
+
 
 const resetStatsButton = document.getElementById("reset-stats-button");
 
 resetStatsButton.addEventListener("click", function () {
   // Reset the stats object to its initial values
   stats = {
-    gamesPlayed: 1,
+    gamesPlayed: 0,
     gamesWon: 0,
     currentStreak: 0,
     maxStreak: 0,
@@ -455,9 +486,3 @@ resetStatsButton.addEventListener("click", function () {
   // Store the reset stats in localStorage
   localStorage.setItem('wordleStats', JSON.stringify(stats));
 });
-
-const theWord = document.querySelector(".theword");
-theWord.innerHTML = targetWord;
-
-const loseWord = document.querySelector(".loseword");
-loseWord.innerHTML = targetWord;
