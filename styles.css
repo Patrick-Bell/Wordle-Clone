@@ -179,6 +179,9 @@
     font-size: 30px;
     cursor: pointer;
   }
+  .bi-info-square-fill:hover{
+    color: green;
+  }
   #icon{
     color: black;
     font-size: 30px;
@@ -213,9 +216,7 @@
     cursor: pointer;
     margin-left: 10px;
 }
-
 /* Style your icons and text as needed */
-
   .divider{
     height: 1px;
     width: 100%;
@@ -268,16 +269,19 @@
   right: 5px;
   font-size: 30px;
   cursor: pointer;
-  color: black;
+  color: white;
   padding: 5px;
+}
+.bi-x-square-fill:hover{
+  color: red;
 }
 .modal{
   min-width: 40%;
-  min-height: 90%;
+  min-height: 75%;
   border: none;
   outline: none;
   background-color: hsl(240, 2%, 1%);;
-  padding: 40px;
+  padding: 15px;
 }
 h3, p, li{
   color: white;
@@ -336,19 +340,14 @@ li{
 span{
   font-weight: 800;
 }
-
-
 /* For light mode */
 body.lightmode .guess-grid [data-letter] {
   color: black; /* Set the text color to black in light mode */
 }
-
 /* For dark mode */
 body.lightmode .tile[data-state="active"] {
   color: black; /* Set the active tile text color to black in light mode */
 }
-
-
 /*Light/Dark Mode */
 body.lightmode {
   background-color: rgb(255, 255, 255);
@@ -400,28 +399,87 @@ body.lightmode .no-letters{
 body.lightmode .play-more{
   color: black;
 }
-
-/* This is the winning and losing modal */
-.win-modal{
+body.lightmode .win-modal {
   width: 350px;
-  height: 300px;
+  height: 350px;
+  background: white;
+  color: black;
 }
+body.lightmode .win-top{
+  background: white;
+}
+body.lightmode h2{
+  color: black;
+}
+body.lightmode .theword{
+  border: 3px dotted black;
+}
+body.lightmode .lose-modal{
+  background: white;
+  color: black;
+}
+body.lightmode .lose-top{
+  background: white;
+}
+body.lightmode .loseword{
+  border: 3px dotted black;
+}
+body.lightmode #stat-modal{
+  background: white;
+  color: black;
+}
+body.lightmode .stats {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add this line for a gray box shadow */
+}
+body.lightmode .setting-modal{
+  background: white;
+  color: black;
+}
+body.lightmode .play-more, .no-letters{
+  text-align: center;
+  color: black;
+}
+body.lightmode .letter-games{
+  color: black;
+}
+body.lightmode .letter-games:hover{
+  color: green;
+}
+body.lightmode .bi-5-square-fill {
+  color: gold;
+}
+body.lightmode .bi-info-square-fill:hover{
+  color: green;
+}
+body.lightmode .bi-x-square-fill:hover{
+  color: red;
+}
+.lightmode .bi-bar-chart-fill:hover{
+  color: green;
+}
+.lightmode .bi-gear-fill:hover{
+  color: green;
+}
+/* This is the winning and losing modal */
 .win-top{
-  display: flex;
   align-items: center;
   justify-content: center;
-  background: grey;
+  background: black;
+  display: inline-block;
+  display: flex;
+}
+h2{
+  color: white;
 }
 .bi-trophy-fill{
   margin-right: 10px;
   font-size: 28px;
+  color: gold;
 }
 .next-game{
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto auto;
-  margin-top: 10%;
   color: white;
   width: 75%;
   height: 30px;
@@ -430,26 +488,32 @@ body.lightmode .play-more{
   background-color: green;
   cursor: pointer;
 }
+.win-modal {
+  width: 350px;
+  height: 350px;
+  background: black;
+  color: white;
+}
 .lose-modal{
   width: 350px;
   height: 300px;
+  background: black;
+  color: white;
 }
 .lose-top{
   display: flex;
   align-items: center;
   justify-content: center;
-  background: grey;
+  background: black;
+
 }
 .bi-emoji-frown-fill{
   margin-right: 10px;
   font-size: 28px;
 }
 .next-game{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto auto;
-  margin-top: 10%;
+  display: block;
+  margin: 10px auto;
   color: white;
   width: 75%;
   height: 30px;
@@ -461,10 +525,12 @@ body.lightmode .play-more{
 .setting-modal{
   width: 500px;
   height: 500px;
+  background: black;
+  color: white;
 }
 .play-more, .no-letters{
   text-align: center;
-  color: black;
+  color: white;
 }
 .no-games{
   display: flex;
@@ -475,10 +541,113 @@ body.lightmode .play-more{
   font-size: 36px;
   cursor: pointer;
   margin: 10px;
+  color: white;
 }
 .letter-games:hover{
   color: green;
 }
 .bi-5-square-fill {
+  color: gold;
+  cursor: not-allowed;
+}
+/*stats grid*/
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  max-width: 100%;
+  padding: 20px;
+  margin-bottom: none;
+}
+.stats {
+  height: 80px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add this line for a gray box shadow */
+  border-radius: 12px;
+}
+.stats-header {
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.stats-header i{
+  display: inline-block;
+  text-align: center;
+}
+.gold-cup{
+  color: gold;
+  font-size: 14px;
+}
+.stats-number {
+  font-size: 26px;
+  font-weight: 800;
+}
+.fire-stat{
+  color: orange;
+  font-size: 14px;
+}
+.stick-stat{
+  color: blue;
+  font-size: 14px;
+}
+.lightning-stat{
+  color: yellow;
+  font-size: 14px;
+}
+.win-stat{
+  color: red;
+  font-size: 14px;
+}
+#stat-modal{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: black;
+  color: white;
+  height: 65%;
+  width: 50%;
+}
+h4, h5{
+  text-align: center;
+}
+.theword{
+  border: 3px dotted white;
+  padding: 10px;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  text-transform: uppercase;
+}
+.loseword{
+  border: 3px dotted white;
+  padding: 10px;
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  text-transform: uppercase;
+}
+.wiki{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.wikilose{
+  text-align: center;
+  margin-bottom: 20px;
+}
+.bi-bar-chart-fill:hover{
+  color: green;
+}
+.bi-gear-fill:hover{
   color: green;
 }
