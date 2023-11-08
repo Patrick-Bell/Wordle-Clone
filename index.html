@@ -20,10 +20,12 @@
       </div>
       <div class="right-icons">
           <i class="bi bi-moon-fill lightmode" id="icon"></i>
-          <i class="bi bi-bar-chart-fill"></i>
+          <i class="bi bi-bar-chart-fill" id="statsicon"></i>
+          <i class="bi bi-award-fill" id="awardicon"></i>
           <i class="bi bi-gear-fill"></i>
       </div>
   </div>
+  
     <dialog class="setting-modal" id="setting-modal">
       <i class="bi bi-x-square-fill" id="close-setting-modal"></i>
       <div class="top">
@@ -38,20 +40,160 @@
         <i class="bi bi-6-square-fill letter-games"></i>
       </div>
     </dialog>
+
       <dialog class="win-modal" id="win-modal">
         <div class="win-top">
           <i class="bi bi-trophy-fill"></i>
           <h2>You Win!</h2>
         </div>
+        <h4 class="wintimertext"></h4>
+        <h4>The word was</h4>
+        <h5 class="theword"></h5>
+        <div class="wiki"></div>
         <button class="next-game">Next Game!</button>
       </dialog>
+
       <dialog class="lose-modal" id="lose-modal">
         <div class="lose-top">
           <i class="bi bi-emoji-frown-fill"></i>
           <h2>You Lose!</h2>
         </div>
+        <h4>The word was</h4>
+        <h5 class="loseword"></h5>
+        <div class="wikilose"></div>
         <button class="next-game">Next Game!</button>
       </dialog>
+
+      <dialog class="award-modal" id="award-modal">
+        <i class="bi bi-x-square-fill" id="close-award-modal"></i>
+        <h2 class="rewardstitle">Achievements & Rewards</h2>
+        <div class="badge">
+            <i class="bi bi-file-lock-fill" class="badges" id="badge1"></i>
+            <div class="badge-info">
+                <p class="badge-name">Welcome to the club</p>
+                <p class="badge-desc">Play your first game!</p>
+            </div>
+        </div>
+        <div class="badge">
+          <i class="bi bi-file-lock-fill" class="badges" id="badge2"></i>
+          <div class="badge-info">
+              <p class="badge-name">Winner</p>
+              <p class="badge-desc">Win your first game!</p>
+          </div>
+      </div>
+      <div class="badge">
+        <i class="bi bi-file-lock-fill" class="badges" id="badge3"></i>
+        <div class="badge-info">
+            <p class="badge-name">On a Streak!</p>
+            <p class="badge-desc">Achieve a 10 win streak!</p>
+        </div>
+    </div>
+    <div class="badge">
+      <i class="bi bi-file-lock-fill" class="badges" id="badge4"></i>
+      <div class="badge-info">
+          <p class="badge-name">Ten</p>
+          <p class="badge-desc">Play 10 games</p>
+      </div>
+  </div>
+  <div class="badge">
+    <i class="bi bi-file-lock-fill" class="badges" id="badge5"></i>
+    <div class="badge-info">
+        <p class="badge-name">Nuke</p>
+        <p class="badge-desc">Win 25 games in a row</p>
+    </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge6"></i>
+  <div class="badge-info">
+      <p class="badge-name">Hidden word</p>
+      <p class="badge-desc">Play and win the hidden word!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge7"></i>
+  <div class="badge-info">
+      <p class="badge-name">Fly High</p>
+      <p class="badge-desc">Play 25 games of Wordle!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge8"></i>
+  <div class="badge-info">
+      <p class="badge-name">Assassin</p>
+      <p class="badge-desc">Win 25 games of Wordle!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge9"></i>
+  <div class="badge-info">
+      <p class="badge-name">Pin Point</p>
+      <p class="badge-desc">Win a game of Wordle in less than 30 seconds!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge10"></i>
+  <div class="badge-info">
+      <p class="badge-name">Rapid Fire</p>
+      <p class="badge-desc">Win a game of Wordle in less than 10 seconds!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge11"></i>
+  <div class="badge-info">
+      <p class="badge-name">Veteran</p>
+      <p class="badge-desc">Play 100 games!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge12"></i>
+  <div class="badge-info">
+      <p class="badge-name">Wordle Master</p>
+      <p class="badge-desc">Win 1000 games of Wordle</p>
+  </div>
+</div>
+<div class="overallbadges">Overall Progress: 0%</div>
+    </dialog>
+
+
+      <dialog class="stat-modal" id="stat-modal">
+        <i class="bi bi-x-square-fill" id="close-stat-modal"></i>
+        <div class="win-top">
+          <h2>YOUR STATS!</h2>
+        </div>
+        <div class="stats-grid">
+            <div class="stats">
+              <div class="stats-header">Games Played
+              <i class="bi bi-joystick stick-stat"></i></div>
+              <div class="stats-number stats-number-games-played">0</div>
+            </div>
+            <div class="stats">
+              <div class="stats-header">Games Won
+              <i class="bi bi-trophy-fill gold-cup"></i></div>
+              <div class="stats-number stats-number-games-won">0</div>
+            </div>
+            <div class="stats">
+              <div class="stats-header">Win %
+                <i class="bi bi-graph-up win-stat"></i></div>
+              <div class="stats-number stats-number-win-percentage"></div>
+            </div>
+            <div class="stats">
+              <div class="stats-header">Current Streak
+                <i class="bi bi-fire fire-stat"></i></div>
+              <div class="stats-number stats-number-current-streak"></div>
+            </div>
+            <div class="stats">
+              <div class="stats-header">Max Streak
+              <i class="bi bi-lightning-charge-fill lightning-stat"></i></div>
+              <div class="stats-number stats-number-max-streak"></div>
+            </div>
+            <div class="stats">
+              <div class="stats-header">Coming soon...</div>
+              <div class="stats-number">N/A</div>
+            </div>
+            <button id="reset-stats-button" class="next-game">RESET STATS!<br>THIS WILL RESET ACHIEVEMENTS</button>
+        </div>
+      </dialog>
+
       <dialog class="modal" id="modal">
         <i class="bi bi-x-square-fill" id="close-modal"></i>
         <h3>How To Play</h3>
