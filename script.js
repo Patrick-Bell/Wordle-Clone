@@ -3,7 +3,6 @@ const targetWords = [2,000+ words that the word can be]
 
 const dictionary = [10,000+ words that are valid]
   
-  // Initialize stats
 let stats = JSON.parse(localStorage.getItem('wordleStats')) || {
   gamesPlayed: 1,
   gamesWon: 0,
@@ -60,11 +59,141 @@ function updateStatsUI() {
   console.log(targetWord);
   console.log(wikiWord);
 
+  // Define badge variables
+const badge1 = document.querySelector("#badge1");
+const badge2 = document.querySelector("#badge2");
+const badge3 = document.querySelector("#badge3");
+const badge4 = document.querySelector("#badge4");
+const badge5 = document.querySelector("#badge5");
+const badge6 = document.querySelector("#badge6");
+const badge7 = document.querySelector("#badge7");
+const badge8 = document.querySelector("#badge8");
+const badge9 = document.querySelector("#badge9");
+const badge10 = document.querySelector("#badge10");
+const badge11 = document.querySelector("#badge11");
+const badge12 = document.querySelector("#badge12");
+let badge1Unlocked = localStorage.getItem('badge1Unlocked') === 'true';
+let badge2Unlocked = localStorage.getItem('badge2Unlocked') === 'true';
+let badge3Unlocked = localStorage.getItem('badge3Unlocked') === 'true';
+let badge4Unlocked = localStorage.getItem('badge4Unlocked') === 'true';
+let badge5Unlocked = localStorage.getItem('badge5Unlocked') === 'true';
+let badge6Unlocked = localStorage.getItem('badge6Unlocked') === 'true';
+let badge7Unlocked = localStorage.getItem('badge7Unlocked') === 'true';
+let badge8Unlocked = localStorage.getItem('badge8Unlocked') === 'true';
+let badge9Unlocked = localStorage.getItem('badge9Unlocked') === 'true';
+let badge10Unlocked = localStorage.getItem('badge10Unlocked') === 'true';
+let badge11Unlocked = localStorage.getItem('badge11Unlocked') === 'true';
+let badge12Unlocked = localStorage.getItem('badge12Unlocked') === 'true';
 
-  
-  startInteraction()
+let gameStartTime = new Date()
+let gameEndTime = new Date()
 
-  
+
+// Function to retrieve badge status from localStorage
+function retrieveBadgeStatus() {
+  // Apply the badge status to the badge elements
+  if (badge1Unlocked) {
+    badge1.classList.remove("bi-file-lock-fill");
+    badge1.classList.add("bi-hand-thumbs-up-fill");
+    badge1.style.color = "blue";
+  }
+  if (badge2Unlocked) {
+    badge2.classList.remove("bi-file-lock-fill");
+    badge2.classList.add("bi-key-fill");
+    badge2.style.color = "orange";
+  }
+  if (badge3Unlocked) {
+    badge3.classList.remove("bi-file-lock-fill");
+    badge3.classList.add("bi-suit-club-fill");
+    badge3.style.color = "red";
+  }
+  if (badge4Unlocked) {
+    badge4.classList.remove("bi-file-lock-fill");
+    badge4.classList.add("bi-globe-americas");
+    badge4.style.color = "blue";
+  }
+  if (badge5Unlocked) {
+    badge5.classList.remove("bi-file-lock-fill");
+    badge5.classList.add("bi-radioactive");
+    badge5.style.color = "yellow";
+  }
+  if (badge7Unlocked) {
+    badge7.classList.remove("bi-file-lock-fill");
+    badge7.classList.add("bi-rocket-takeoff-fill");
+    badge7.style.color = "purple";
+  }
+  if (badge9Unlocked) {
+    badge9.classList.remove("bi-file-lock-fill")
+    badge9.classList.add("bi-pin-angle-fill")
+    badge9.style.color = "lightblue"
+  }
+  if (badge10Unlocked) {
+    badge10.classList.remove("bi-file-lock-fill")
+    badge10.classList.add("bi-speedometer")
+    badge10.style.color = "yellow"
+  }
+  if (badge12Unlocked) {
+    badge12.classList.remove("bi-file-lock-fill")
+    badge12.classList.add("bi-file-word-fill")
+    badge12.style.color = "gold"
+  }
+}
+
+// Function to update badge status
+function updateBadges() {
+  if (stats.gamesPlayed >= 1 && stats.gamesPlayed < 2) {
+    badge1Unlocked = true;
+    badge1.classList.remove("bi-file-lock-fill");
+    badge1.classList.add("bi-hand-thumbs-up-fill");
+    badge1.style.color = "blue";
+    localStorage.setItem('badge1Unlocked', 'true');
+  }
+  if (!badge2Unlocked && stats.gamesWon >= 1 && stats.gamesWon < 2) {
+    badge2.classList.remove("bi-file-lock-fill");
+    badge2.classList.add("bi-key-fill");
+    badge2.style.color = "orange";
+    localStorage.setItem('badge2Unlocked', 'true');
+  }
+  if (!badge3Unlocked && stats.maxStreak >= 10 && stats.maxStreak < 11) {
+    badge3.classList.remove("bi-file-lock-fill");
+    badge3.classList.add("bi-suit-club-fill");
+    badge3.style.color = "red";
+    localStorage.setItem('badge3Unlocked', 'true');
+  }
+  if (!badge4Unlocked && stats.gamesPlayed >= 10 && stats.gamesPlayed < 11) {
+    badge4.classList.remove("bi-file-lock-fill");
+    badge4.classList.add("bi-globe-americas");
+    badge4.style.color = "blue";
+    localStorage.setItem('badge4Unlocked', 'true');
+  }
+  if (!badge5Unlocked && stats.maxStreak >= 25 && stats.maxStreak < 26) {
+    badge5.classList.remove("bi-file-lock-fill");
+    badge5.classList.add("bi-radioactive");
+    badge5.style.color = "yellow";
+    localStorage.setItem('badge5Unlocked', 'true');
+  }
+  if (!badge7Unlocked && stats.gamesPlayed >=25 && stats.gamesPlayed < 26) {
+    badge7.classList.remove("bi-file-lock-fill");
+    badge7.classList.add("bi-rocket-takeoff-fill");
+    badge7.style.color = "purple";
+    localStorage.setItem('badge7Unlocked', 'true')
+  }
+  if (!badge12Unlocked && stats.gamesWon >=1000 && stats.gamesWon < 1001) {
+    badge12.classList.remove("bi-file-lock-fill");
+    badge12.classList.add("bi-file-word-fill");
+    badge12.style.color = "gold";
+    localStorage.setItem('badge12Unlocked', 'true')
+  }
+
+  // After updating badges, call retrieveBadgeStatus to apply changes immediately
+  retrieveBadgeStatus();
+}
+
+retrieveBadgeStatus();
+  startInteraction();
+  gameStartTime = new Date()
+
+
   function startInteraction() {
     document.addEventListener("click", handleMouseClick)
     document.addEventListener("keydown", handleKeyPress)
@@ -263,11 +392,32 @@ function updateStatsUI() {
     localStorage.setItem('wordleStats', JSON.stringify(stats));
     updateWikiLink()
 
+    gameEndTime = new Date()
+  const gameDuration = (gameEndTime - gameStartTime) / 1000; // in seconds
+  console.log(gameDuration)
+  if (!badge9Unlocked && gameDuration < 30) {
+    badge9.classList.remove("bi-file-lock-fill");
+    badge9.classList.add("bi-pin-angle-fill");
+    badge9.style.color = "lightblue";
+    localStorage.setItem('badge9Unlocked', 'true')
+  }
+  if (!badge10Unlocked && gameDuration < 10) {
+    badge10.classList.remove("bi-file-lock-fill");
+    badge10.classList.add("bi-speedometer");
+    badge10.style.color = "yellow";
+    localStorage.setItem('badge10Unlocked', 'true')
+  }
 
-
+  console.log(gameDuration)
+  const resetTimer = new Date()
+  resetTimer
       setTimeout(function() {
         winModal.showModal();
         document.querySelector(".theword").textContent = targetWord;
+        document.querySelector(".wintimertext").textContent = `You won the game in ${gameDuration} seconds!`
+        updateBadges();
+        retrieveBadgeStatus();
+
         // This modal will change to something like win-modal.showModal()
       }, 2000);
       
@@ -291,6 +441,9 @@ function updateStatsUI() {
       setTimeout(function() {
         loseModal.showModal();
         document.querySelector(".loseword").textContent = targetWord;
+        updateBadges();
+        retrieveBadgeStatus();
+
       }, 2000);
     }
   }
@@ -331,6 +484,7 @@ function updateStatsUI() {
     }
   
     function newGame() {
+      gameStartTime = new Date();
       stats.gamesPlayed += 1;
       updateStatsUI();
       localStorage.setItem('wordleStats', JSON.stringify(stats));
@@ -347,7 +501,8 @@ function updateStatsUI() {
       updateTextColor();
       resetKeyboardButtons();
       startInteraction();
-
+      updateBadges();
+      retrieveBadgeStatus();
     }
 
   
@@ -460,11 +615,102 @@ function updateStatsUI() {
       statModal.close();
     });
   });
-  
 
+  const awardModal = document.querySelector(".award-modal");
+  const openAwardModal = document.querySelector("#awardicon")
+  const closeAwardModal = document.querySelector("#close-award-modal")
+
+  openAwardModal.addEventListener("click", () => {
+    awardModal.showModal()
+  });
+  
+  closeAwardModal.addEventListener("click", () => {
+    awardModal.close();
+  })
+
+
+
+  // Reset the stats and badge progress
 
 const resetStatsButton = document.getElementById("reset-stats-button");
+// Define badge variables
+badge1Unlocked = false;
+badge2Unlocked = false;
+badge3Unlocked = false;
+badge4Unlocked = false;
+badge5Unlocked = false;
+badge7Unlocked = false;
+badge9Unlocked = false;
+badge10Unlocked = false;
+badge12Unlocked = false;
 
+
+// Function to reset badge status
+function resetBadges() {
+  // Reset badge status variables and update their status
+  badge1Unlocked = false;
+  badge2Unlocked = false;
+  badge3Unlocked = false;
+  badge4Unlocked = false;
+  badge5Unlocked = false;
+  badge7Unlocked = false;
+  badge9Unlocked = false;
+  badge10Unlocked = false;
+  badge12Unlocked = false;
+
+
+
+  // Reset badge UI and remove "unlocked" status
+  badge1.classList.add("bi-file-lock-fill");
+  badge1.classList.remove("bi-hand-thumbs-up-fill");
+  badge1.style.color = "";
+
+  badge2.classList.add("bi-file-lock-fill");
+  badge2.classList.remove("bi-key-fill");
+  badge2.style.color = "";
+
+  badge3.classList.add("bi-file-lock-fill");
+  badge3.classList.remove("bi-suit-club-fill");
+  badge3.style.color = "";
+
+  badge4.classList.add("bi-file-lock-fill");
+  badge4.classList.remove("bi-globe-americas");
+  badge4.style.color = "";
+
+  badge5.classList.add("bi-file-lock-fill");
+  badge5.classList.remove("bi-radioactive");
+  badge5.style.color = "";
+
+  badge7.classList.add("bi-file-lock-fill");
+  badge7.classList.remove("bi-rocket-takeoff-fill");
+  badge7.style.color = "";
+
+  badge9.classList.add("bi-file-lock-fill");
+  badge9.classList.remove("bi-pin-angle-fill");
+  badge9.style.color = "";
+
+  badge10.classList.add("bi-file-lock-fill");
+  badge10.classList.remove("bi-speedometer");
+  badge10.style.color = "";
+
+  badge12.classList.add("bi-file-lock-fill");
+  badge12.classList.remove("bi-speedometer");
+  badge12.style.color = "";
+
+  // Clear badge-related items from local storage
+  localStorage.removeItem('badge1Unlocked');
+  localStorage.removeItem('badge2Unlocked');
+  localStorage.removeItem('badge3Unlocked');
+  localStorage.removeItem('badge4Unlocked');
+  localStorage.removeItem('badge5Unlocked');
+  localStorage.removeItem('badge7Unlocked');
+  localStorage.removeItem('badge9Unlocked');
+  localStorage.removeItem('badge10Unlocked');
+  localStorage.removeItem('badge12Unlocked');
+}
+
+
+// Event listener for the reset stats button
 resetStatsButton.addEventListener("click", function () {
   // Reset the stats object to its initial values
   stats = {
@@ -485,4 +731,7 @@ resetStatsButton.addEventListener("click", function () {
 
   // Store the reset stats in localStorage
   localStorage.setItem('wordleStats', JSON.stringify(stats));
+
+  // Reset badge progress and clear related local storage
+  resetBadges();
 });
