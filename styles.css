@@ -216,6 +216,15 @@
     cursor: pointer;
     margin-left: 10px;
 }
+.bi-award-fill{
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+#awardicon:hover{
+  color: green
+}
 /* Style your icons and text as needed */
   .divider{
     height: 1px;
@@ -460,6 +469,16 @@ body.lightmode .bi-x-square-fill:hover{
 .lightmode .bi-gear-fill:hover{
   color: green;
 }
+body.lightmode .bi-award-fill{
+  color: black;
+}
+body.lightmode .award-modal{
+  background: white;
+  color: black;
+}
+body.lightmode .badge {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
 /* This is the winning and losing modal */
 .win-top{
   align-items: center;
@@ -496,7 +515,7 @@ h2{
 }
 .lose-modal{
   width: 350px;
-  height: 300px;
+  height: 350px;
   background: black;
   color: white;
 }
@@ -521,6 +540,9 @@ h2{
   border: none;
   background-color: green;
   cursor: pointer;
+}
+.next-game:hover{
+  background-color: hsl(115, 29%, 43%);
 }
 .setting-modal{
   width: 500px;
@@ -650,4 +672,100 @@ h4, h5{
 }
 .bi-gear-fill:hover{
   color: green;
+}
+/* Award Modal */
+.award-modal{
+  max-height: 450px;
+  width: 450px;
+  background: black;
+  color: white;
+}
+.bi-hand-thumbs-up-fill{
+  font-size: 36px;
+  color: blue;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-key-fill{
+  font-size: 36px;
+  color: blue;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-globe-americas{
+  font-size: 36px;
+  color: green;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-rocket-takeoff-fill{
+  font-size: 36px;
+  margin-right: 30px;
+  margin-left: 20px;
+}
+.bi-suit-club-fill{
+  font-size: 36px;
+  color: red;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-pin-angle-fill{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-speedometer{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-file-word-fill{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-radioactive{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-file-lock-fill{
+  font-size: 42px;
+}
+.badge {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.badge-info{
+  font-size: 16px;
+  margin-bottom: 20px;
+  flex: 1;
+}
+.badge i {
+  flex: 0 0 auto; /* This keeps the icon on the left without taking up additional space */
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.badge p {
+  flex: 1 1 auto; /* This allows the text to fill the available space */
+  line-height: 1.5; /* Adjust the line height as needed */
+  margin: 0;
+}
+.badge-name{
+  font-size: 22px;
+  font-weight: 600;
+}
+.rewardstitle{
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+.overallbadges{
+  text-align: center;
+  font-weight: 600;
+  margin-top: 10px;
 }
