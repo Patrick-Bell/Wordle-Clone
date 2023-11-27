@@ -68,6 +68,13 @@
         <i class="bi bi-x-square-fill" id="close-award-modal"></i>
         <h2 class="rewardstitle">Achievements & Rewards</h2>
         <div class="badge">
+          <i class="bi bi-file-lock-fill" class="badges" id="badgeplat"></i>
+          <div class="badge-info">
+              <p class="badge-name">Platinum</p>
+              <p class="badge-desc">Unlock all achievements in the game</p>
+          </div>
+        </div>
+        <div class="badge">
             <i class="bi bi-file-lock-fill" class="badges" id="badge1"></i>
             <div class="badge-info">
                 <p class="badge-name">Welcome to the club</p>
@@ -105,7 +112,14 @@
 <div class="badge">
   <i class="bi bi-file-lock-fill" class="badges" id="badge6"></i>
   <div class="badge-info">
-      <p class="badge-name">Hidden word</p>
+      <p class="badge-name" id="badge6name">Hidden word</p>
+      <p class="badge-desc">Play and win the hidden word!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge16"></i>
+  <div class="badge-info">
+      <p class="badge-name" id="badge7name">Hidden word</p>
       <p class="badge-desc">Play and win the hidden word!</p>
   </div>
 </div>
@@ -127,14 +141,35 @@
   <i class="bi bi-file-lock-fill" class="badges" id="badge9"></i>
   <div class="badge-info">
       <p class="badge-name">Pin Point</p>
-      <p class="badge-desc">Win a game of Wordle in less than 30 seconds!</p>
+      <p class="badge-desc">Win a game in less than 30 seconds!</p>
   </div>
 </div>
 <div class="badge">
   <i class="bi bi-file-lock-fill" class="badges" id="badge10"></i>
   <div class="badge-info">
       <p class="badge-name">Rapid Fire</p>
-      <p class="badge-desc">Win a game of Wordle in less than 10 seconds!</p>
+      <p class="badge-desc">Win a game in less than 10 seconds!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge13"></i>
+  <div class="badge-info">
+      <p class="badge-name">Luck or Skill?</p>
+      <p class="badge-desc">Win a game in less than 3 seconds!</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge14"></i>
+  <div class="badge-info">
+      <p class="badge-name">Expert</p>
+      <p class="badge-desc">Achieve 70% win ratio after 20 games</p>
+  </div>
+</div>
+<div class="badge">
+  <i class="bi bi-file-lock-fill" class="badges" id="badge15"></i>
+  <div class="badge-info">
+      <p class="badge-name">Coming Soon...</p>
+      <p class="badge-desc">N/A</p>
   </div>
 </div>
 <div class="badge">
@@ -151,7 +186,7 @@
       <p class="badge-desc">Win 1000 games of Wordle</p>
   </div>
 </div>
-<div class="overallbadges">Overall Progress: 0%</div>
+<div class="overallbadges">More achievements coming soon!</div>
     </dialog>
 
 
@@ -190,7 +225,7 @@
               <div class="stats-header">Coming soon...</div>
               <div class="stats-number">N/A</div>
             </div>
-            <button id="reset-stats-button" class="next-game">RESET STATS!<br>THIS WILL RESET ACHIEVEMENTS</button>
+            <button id="reset-stats-button" class="next-game">RESET STATS! THIS WILL RESET ACHIEVEMENTS</button>
         </div>
       </dialog>
 
