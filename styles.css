@@ -222,6 +222,15 @@
     cursor: pointer;
     margin-left: 10px;
 }
+.bi-question-square-fill{
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+.bi-question-square-fill:hover{
+  color: green;
+}
 #awardicon:hover{
   color: green
 }
@@ -402,6 +411,12 @@ body.lightmode .bi-bar-chart-fill{
 body.lightmode .bi-gear-fill{
   color: black;
 }
+body.lightmode .bi-question-square-fill{
+  color: black;
+}
+body.lightmode .bi-question-square-fill:hover{
+  color: green;
+}
 body.lightmode .no-letters{
   color: black;
 }
@@ -501,11 +516,11 @@ h2{
   justify-content: center;
   color: white;
   width: 75%;
-  height: 30px;
   outline: none;
   border: none;
   background-color: green;
   cursor: pointer;
+  padding: 10px;
 }
 .win-modal {
   width: 350px;
@@ -535,11 +550,11 @@ h2{
   margin: 10px auto;
   color: white;
   width: 75%;
-  height: 30px;
   outline: none;
   border: none;
   background-color: green;
   cursor: pointer;
+  border-radius: 16px;
 }
 .next-game:hover{
   background-color: hsl(115, 29%, 43%);
@@ -633,8 +648,8 @@ h2{
   text-align: center;
   background: black;
   color: white;
-  height: 65%;
-  width: 50%;
+  height: 450px;
+  width: 450px;
 }
 h4, h5{
   text-align: center;
@@ -719,7 +734,37 @@ h4, h5{
   margin-right: 30px; /* Adjust the margin as needed */
   margin-left: 20px;
 }
+.bi-apple{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-gem{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-cloudy-fill{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-alarm-fill{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-database-fill-check {
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
 .bi-file-word-fill{
+  font-size: 36px;
+  margin-right: 30px; /* Adjust the margin as needed */
+  margin-left: 20px;
+}
+.bi-robot{
   font-size: 36px;
   margin-right: 30px; /* Adjust the margin as needed */
   margin-left: 20px;
