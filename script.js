@@ -216,43 +216,43 @@ function updateBadges() {
     badge2.style.color = "orange";
     localStorage.setItem('badge2Unlocked', 'true');
   }
-  if (!badge3Unlocked && stats.maxStreak >= 1 && stats.maxStreak < 2) {
+  if (!badge3Unlocked && stats.maxStreak >= 10 && stats.maxStreak < 11) {
     badge3.classList.remove("bi-file-lock-fill");
     badge3.classList.add("bi-suit-club-fill");
     badge3.style.color = "red";
     localStorage.setItem('badge3Unlocked', 'true');
   }
-  if (!badge4Unlocked && stats.gamesPlayed >= 1 && stats.gamesPlayed < 2) {
+  if (!badge4Unlocked && stats.gamesPlayed >= 10 && stats.gamesPlayed < 11) {
     badge4.classList.remove("bi-file-lock-fill");
     badge4.classList.add("bi-globe-americas");
     badge4.style.color = "blue";
     localStorage.setItem('badge4Unlocked', 'true');
   }
-  if (!badge5Unlocked && stats.maxStreak >= 2 && stats.maxStreak < 3) {
+  if (!badge5Unlocked && stats.maxStreak >= 25 && stats.maxStreak < 26) {
     badge5.classList.remove("bi-file-lock-fill");
     badge5.classList.add("bi-radioactive");
     badge5.style.color = "yellow";
     localStorage.setItem('badge5Unlocked', 'true');
   }
-  if (!badge7Unlocked && stats.gamesPlayed >=2 && stats.gamesPlayed < 3) {
+  if (!badge7Unlocked && stats.gamesPlayed >= 25 && stats.gamesPlayed < 26) {
     badge7.classList.remove("bi-file-lock-fill");
     badge7.classList.add("bi-rocket-takeoff-fill");
     badge7.style.color = "purple";
     localStorage.setItem('badge7Unlocked', 'true')
   }
-  if (!badge11Unlocked && stats.gamesPlayed >= 1 && stats.gamesPlayed < 2) {
+  if (!badge11Unlocked && stats.gamesPlayed >= 100 && stats.gamesPlayed < 101) {
     badge11.classList.remove("bi-file-lock-fill");
     badge11.classList.add("bi-alarm-fill");
     badge11.style.color = "pink";
     localStorage.setItem('badge11Unlocked', 'true')
   }
-  if (!badge12Unlocked && stats.gamesWon >= 3 && stats.gamesWon < 4) {
+  if (!badge12Unlocked && stats.gamesWon >= 1000 && stats.gamesWon < 1001) {
     badge12.classList.remove("bi-file-lock-fill");
     badge12.classList.add("bi-file-word-fill");
     badge12.style.color = "gold";
     localStorage.setItem('badge12Unlocked', 'true')
   }
-  if (!badge14Unlocked && stats.gamesPlayed >= 3 && stats.winPercentage >= 70) {
+  if (!badge14Unlocked && stats.gamesPlayed >= 20 && stats.winPercentage >= 70) {
     badge14.classList.remove("bi-file-lock-fill");
     badge14.classList.add("bi-database-fill-check");
     badge14.style.color = "yellow";
@@ -666,18 +666,6 @@ function updateBadges() {
     modal.close();
   })
 
-
-  const settingModal = document.querySelector(".setting-modal")
-  const openSettingModal = document.querySelector(".bi-gear-fill")
-  const closeSettingModal = document.querySelector("#close-setting-modal")
-
-  openSettingModal.addEventListener("click", () => {
-    settingModal.showModal();
-  })
-
-  closeSettingModal.addEventListener("click", () => {
-    settingModal.close();
-  })
 
 
   document.addEventListener("DOMContentLoaded", () => {
