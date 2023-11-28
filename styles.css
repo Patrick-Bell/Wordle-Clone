@@ -200,17 +200,17 @@
 }
 .center-text {
     text-align: center;
+    font-size: 1.25rem;
+    margin-left: 10px;
+    margin: auto;
 }
 .right-icons {
     text-align: center;
 }
-.bi-bar-chart-fill{
-    color: white;
-    font-size: 30px;
-    cursor: pointer;
-    margin-left: 10px;
+.bi-moon-fill, .bi-sun-fill{
+  margin-left: 10px;
 }
-.bi-gear-fill{
+.bi-bar-chart-fill{
     color: white;
     font-size: 30px;
     cursor: pointer;
@@ -307,6 +307,7 @@ h3, p, li{
 p{
   margin-top: 10px;
   margin-bottom: 30px;
+  font-size: 1rem;
 }
 h3{
   font-size: 36px;
@@ -314,6 +315,7 @@ h3{
 }
 li{
   margin-top: 10px;
+  font-size: 1rem;
 }
 .example{
   margin: 0;
@@ -357,6 +359,7 @@ li{
 }
 span{
   font-weight: 800;
+  font-size: 1rem;
 }
 /* For light mode */
 body.lightmode .guess-grid [data-letter] {
@@ -424,8 +427,6 @@ body.lightmode .play-more{
   color: black;
 }
 body.lightmode .win-modal {
-  width: 350px;
-  height: 350px;
   background: white;
   color: black;
 }
@@ -502,9 +503,17 @@ body.lightmode .badge {
   display: inline-block;
   display: flex;
 }
-h2{
+.win-top h2{
   color: white;
+  font-size: 1.2rem;
 }
+h4{
+  font-size: 0.8rem;
+}
+.win-top .theword{
+  font-size: 1.2rem;
+}
+
 .bi-trophy-fill{
   margin-right: 10px;
   font-size: 28px;
@@ -558,12 +567,6 @@ h2{
 }
 .next-game:hover{
   background-color: hsl(115, 29%, 43%);
-}
-.setting-modal{
-  width: 500px;
-  height: 500px;
-  background: black;
-  color: white;
 }
 .play-more, .no-letters{
   text-align: center;
@@ -648,8 +651,8 @@ h2{
   text-align: center;
   background: black;
   color: white;
-  height: 450px;
-  width: 450px;
+  height: 400px;
+  width: 700px;
 }
 h4, h5{
   text-align: center;
@@ -663,6 +666,7 @@ h4, h5{
   justify-content: center;
   margin: 20px auto;
   text-transform: uppercase;
+  font-size: 0.8rem;
 }
 .loseword{
   border: 3px dotted white;
@@ -673,14 +677,17 @@ h4, h5{
   justify-content: center;
   margin: 20px auto;
   text-transform: uppercase;
+  font-size: 0.8rem;
 }
 .wiki{
   text-align: center;
   margin-bottom: 20px;
+  font-size: 0.8rem;
 }
 .wikilose{
   text-align: center;
   margin-bottom: 20px;
+  font-size: 0.8rem;
 }
 .bi-bar-chart-fill:hover{
   color: green;
@@ -813,4 +820,5 @@ h4, h5{
   text-align: center;
   font-weight: 600;
   margin-top: 10px;
+  font-size: 0.8rem;
 }
