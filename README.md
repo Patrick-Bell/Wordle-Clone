@@ -18,7 +18,7 @@ Wordle is a web-based word game. Players have six attempts to guess a five-lette
 HTML, CSS, JavaScript<br>
 
 **Future Updates**<br>
-[] - Add a more in depth settings menu where users can select 1 other game<br>
 [] - Add more unique achievements<br>
-[] - Add a hint feature
+[] - Share option<br>
+
 
