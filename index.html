@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   <script src="script.js" defer></script>
   <title>Wordle Clone</title>
@@ -180,12 +181,14 @@
     </dialog>
 
 
+
+
       <dialog class="stat-modal" id="stat-modal">
         <i class="bi bi-x-square-fill" id="close-stat-modal"></i>
         <div class="win-top">
           <h2>YOUR STATS!</h2>
         </div>
-        <div class="stats-grid">
+        <div class="stats-grid" id="your-stats-modal">
             <div class="stats">
               <div class="stats-header">Games Played
               <i class="bi bi-joystick stick-stat"></i></div>
@@ -215,9 +218,21 @@
               <div class="stats-header">Coming soon...</div>
               <div class="stats-number">N/A</div>
             </div>
-            <button id="reset-stats-button" class="next-game">RESET STATS! THIS WILL RESET ACHIEVEMENTS</button>
+          </div>
+          <div class="ssbuttons">
+            <div class="share-stat">
+            <button id="reset-stats-button">Reset Progress
+              <i class="bi bi-x"></i></button>
+          </div>
+          <div class="share-stat">
+            <button id="share-btn">Share Stats
+            <i class="bi bi-share-fill"></i></button>
+          </div>
         </div>
       </dialog>
+
+
+
 
       <dialog class="modal" id="modal">
         <i class="bi bi-x-square-fill" id="close-modal"></i>
