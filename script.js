@@ -890,3 +890,48 @@ resetStatsButton.addEventListener("click", function () {
   // Reset badge progress and clear related local storage
   resetBadges();
 });
+
+
+let shareBtn = document.querySelector("#share-btn");
+let isSharing = false;
+
+shareBtn.addEventListener("click", () => {
+    if (isSharing) {
+        console.log('Sharing in progress. Please wait.');
+        return;
+    }
+
+    // Example using html2canvas library
+    html2canvas(document.getElementById('your-stats-modal')).then((canvas) => {
+        // 'canvas' now contains the captured content
+        const imgDataUrl = canvas.toDataURL('image/png');
+
+        if (navigator.share) {
+            isSharing = true;
+
+            canvas.toBlob((blob) => {
+                setTimeout(() => { // Introduce a delay before the second share attempt
+                    navigator.share({
+                        title: 'My Stats',
+                        text: 'Check out my awesome stats!',
+                        files: [new File([blob], 'stats.png', { type: 'image/png' })],
+                    })
+                    .then(() => {
+                        console.log('Shared successfully');
+                        isSharing = false;
+                    })
+                    .catch((error) => {
+                        console.error('Error sharing:', error);
+                        isSharing = false;
+                    });
+                }, 500); // Adjust the delay time as needed
+            }, 'image/png');
+        } else {
+            // Fallback for browsers that don't support Web Share API
+            // Handle sharing using another approach
+        }
+
+        // Use 'imgDataUrl' for sharing or display
+    });
+});
+
