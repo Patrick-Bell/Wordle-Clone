@@ -11,6 +11,7 @@ Wordle is a web-based word game. Players have six attempts to guess a five-lette
 [x] - Users can unlock unique achievements/badges<br>
 [x] - Option to 'learn more' about the word at the end of each game<br>
 [x] - Displays the time it took to guess correct words<br>
+[x] - Share stat option (via whatsapp, email, etc)<br>
 [x] - Light/Dark mode<br>
 [x] - Web/Mobile Responsive<br>
 
@@ -19,6 +20,4 @@ HTML, CSS, JavaScript<br>
 
 **Future Updates**<br>
 [] - Add more unique achievements<br>
-[] - Share option<br>
-
 
