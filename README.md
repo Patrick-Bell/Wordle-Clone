@@ -20,4 +20,6 @@ HTML, CSS, JavaScript<br>
 
 **Future Updates**<br>
 [] - Add more unique achievements<br>
+[] - Notifications for unlocking badges with animations<br>
+[] - Background music<br>
 
