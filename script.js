@@ -114,6 +114,45 @@ platinumBadgeUnlocked
 let hiddenBadgeName = document.getElementById("badge6name");
 let hiddenBadgeName2 = document.getElementById("badge7name");
 
+const notifications = document.querySelector(".notifications");
+const toastDetails = {
+    timer: 5000,
+    badgeUnlocked: {
+        icon: "bi-check-circle-fill",
+        text: "Achievement unlocked!"
+    },
+};
+
+const removeToast = (toast) => {
+    toast.classList.add("hide");
+    if (toast.timeoutId) clearTimeout(toast.timeoutId);
+};
+
+const createToast = (type, badgeId) => {
+  console.log("first check")
+  if (badgeId && localStorage.getItem(`${badgeId}Unlocked`) === 'true') {
+      // If the badge is already unlocked, don't create a notification
+      return;
+  }
+
+  const { icon, text } = toastDetails[type];
+  const toast = document.createElement("li");
+  toast.className = `toast ${type}`;
+  toast.innerHTML = `<div class="column">
+                      <i class="bi ${icon}"></i>
+                      <span>${text}</span>
+                  </div>`;
+  notifications.appendChild(toast);
+  toast.timeoutId = setTimeout(() => {
+      removeToast(toast);
+  }, toastDetails.timer);
+
+  // Update badge status and store in localStorage
+  if (badgeId) {
+      localStorage.setItem(`${badgeId}Unlocked`, 'true');
+  }
+};
+ 
 let gameStartTime = new Date()
 let gameEndTime = new Date()
 
@@ -203,60 +242,80 @@ if (platinumBadgeUnlocked) {
 
 // Function to update badge status
 function updateBadges() {
-  if (stats.gamesPlayed >= 1 && stats.gamesPlayed < 2) {
+  if (!badge1Unlocked && stats.gamesPlayed >= 1 && stats.gamesPlayed < 2) {
     badge1Unlocked = true;
     badge1.classList.remove("bi-file-lock-fill");
     badge1.classList.add("bi-hand-thumbs-up-fill");
     badge1.style.color = "blue";
     localStorage.setItem('badge1Unlocked', 'true');
+    createToast("badgeUnlocked", "badge1");
+    console.log("unlocking badge 1");
   }
   if (!badge2Unlocked && stats.gamesWon >= 1 && stats.gamesWon < 2) {
+    badge2Unlocked = true;
     badge2.classList.remove("bi-file-lock-fill");
     badge2.classList.add("bi-key-fill");
     badge2.style.color = "orange";
     localStorage.setItem('badge2Unlocked', 'true');
+    createToast("badgeUnlocked", "badge2");
+    console.log("unlocking badge 2")
   }
   if (!badge3Unlocked && stats.maxStreak >= 10 && stats.maxStreak < 11) {
+    badge3Unlocked = true;
     badge3.classList.remove("bi-file-lock-fill");
     badge3.classList.add("bi-suit-club-fill");
     badge3.style.color = "red";
     localStorage.setItem('badge3Unlocked', 'true');
+    createToast("badgeUnlocked", "badge3");
+    console.log("unlocking badge 3")
   }
   if (!badge4Unlocked && stats.gamesPlayed >= 10 && stats.gamesPlayed < 11) {
+    badge4Unlocked = true;
     badge4.classList.remove("bi-file-lock-fill");
     badge4.classList.add("bi-globe-americas");
     badge4.style.color = "blue";
     localStorage.setItem('badge4Unlocked', 'true');
+    createToast("badgeUnlocked", "badge4");
   }
   if (!badge5Unlocked && stats.maxStreak >= 25 && stats.maxStreak < 26) {
+    badge5Unlocked = true;
     badge5.classList.remove("bi-file-lock-fill");
     badge5.classList.add("bi-radioactive");
     badge5.style.color = "yellow";
     localStorage.setItem('badge5Unlocked', 'true');
+    createToast("badgeUnlocked", "badge5");
   }
   if (!badge7Unlocked && stats.gamesPlayed >= 25 && stats.gamesPlayed < 26) {
+    badge7Unlocked = true;
     badge7.classList.remove("bi-file-lock-fill");
     badge7.classList.add("bi-rocket-takeoff-fill");
     badge7.style.color = "purple";
     localStorage.setItem('badge7Unlocked', 'true')
+    createToast("badgeUnlocked", "badge7");
   }
   if (!badge11Unlocked && stats.gamesPlayed >= 100 && stats.gamesPlayed < 101) {
+    badge11Unlocked = true;
     badge11.classList.remove("bi-file-lock-fill");
     badge11.classList.add("bi-alarm-fill");
     badge11.style.color = "pink";
     localStorage.setItem('badge11Unlocked', 'true')
+    createToast("badgeUnlocked", "badge11");
   }
   if (!badge12Unlocked && stats.gamesWon >= 1000 && stats.gamesWon < 1001) {
+    badge12Unlocked = true;
     badge12.classList.remove("bi-file-lock-fill");
     badge12.classList.add("bi-file-word-fill");
     badge12.style.color = "gold";
     localStorage.setItem('badge12Unlocked', 'true')
+    createToast("badgeUnlocked", "badge12");
   }
   if (!badge14Unlocked && stats.gamesPlayed >= 20 && stats.winPercentage >= 70) {
+    badge14Unlocked = true;
     badge14.classList.remove("bi-file-lock-fill");
     badge14.classList.add("bi-database-fill-check");
     badge14.style.color = "yellow";
     localStorage.setItem('badge14Unlocked', 'true')
+    createToast("badgeUnlocked", "badge14");
   }
   // If all other badges are unlocked, unlock the special badge
   if (allBadgesUnlocked && !platinumBadgeUnlocked) {
@@ -265,6 +324,7 @@ function updateBadges() {
     platinumBadge.classList.add("bi-gem");
     platinumBadge.style.color = "silver";  // Adjust the color based on your design
     localStorage.setItem('platinumBadgeUnlocked', 'true');
+
   }
 
 
@@ -482,36 +542,49 @@ function updateBadges() {
   const gameDuration = (gameEndTime - gameStartTime) / 1000; // in seconds
   console.log(gameDuration)
   if (!badge9Unlocked && gameDuration < 30) {
+    badge9Unlocked = true;
     badge9.classList.remove("bi-file-lock-fill");
     badge9.classList.add("bi-pin-angle-fill");
     badge9.style.color = "lightblue";
     localStorage.setItem('badge9Unlocked', 'true')
+    createToast("badgeUnlocked", "badge9");
+    console.log("unlocking badge 30 seconds")
   }
   if (!badge10Unlocked && gameDuration < 10) {
+    badge10Unlocked = true;
     badge10.classList.remove("bi-file-lock-fill");
     badge10.classList.add("bi-speedometer");
     badge10.style.color = "yellow";
     localStorage.setItem('badge10Unlocked', 'true')
+    createToast("badgeUnlocked", "badge10");
   }
   if (!badge13Unlocked && gameDuration < 3) {
+    badge13Unlocked = true;
     badge13.classList.remove("bi-file-lock-fill");
     badge13.classList.add("bi-robot");
     badge13.style.color = "grey";
     localStorage.setItem('badge13Unlocked', 'true');
+    createToast("badgeUnlocked", "badge13");
   }
   if (!badge6Unlocked && targetWord === guess && targetWord == "apple") {
+    badge6Unlocked = true;
     badge6.classList.remove("bi-file-lock-fill");
     badge6.classList.add("bi-apple");
     badge6.style.color = "red";
     hiddenBadgeName.innerHTML = "Hidden Word: Apple"
     localStorage.setItem('badge6Unlocked', 'true')
+    createToast("badgeUnlocked", "badge6");
+    console.log("unlocking badge apple")
   }
   if (!badge16Unlocked && targetWord === guess && targetWord == "cloud") {
+    badge16Unlocked = true;
     badge16.classList.remove("bi-file-lock-fill");
     badge16.classList.add("bi-cloudy-fill");
     badge16.style.color = "lightblue";
     hiddenBadgeName2.innerHTML = "Hidden Word: Cloud"
     localStorage.setItem('badge16Unlocked', 'true');
+    createToast("badgeUnlocked", "badge16");
+    console.log("unlocking badge cloud")
   }
 
   
@@ -934,4 +1007,6 @@ shareBtn.addEventListener("click", () => {
         // Use 'imgDataUrl' for sharing or display
     });
 });
+
+
 
