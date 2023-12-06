@@ -858,3 +858,71 @@ h4, h5{
   justify-content: center;
   border-radius: 12px;
 }
+
+
+
+.notifications{
+  position: fixed;
+  top: 100px;
+  right: -90px;
+  z-index: 1000;
+}
+.notifications .toast,
+.notifications .column{
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+.notifications .toast{
+  width: 400px;
+  list-style: none;
+  border-radius: 4px;
+  padding: 16px 17px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  background: black;
+  color: white;
+  z-index: 1000;
+  justify-content: space-between;
+  animation: show_toast 0.3s ease forwards;
+}
+.notifications .toast.hide{
+  display: none;
+}
+.toast::before{
+  position: absolute;
+  content: "";
+  height: 3px;
+  width: 100%;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1000;
+  animation: progress 5s linear forwards;
+}
+@keyframes progress{
+  100%{
+      width: 0%;
+  }
+}
+.toast.badgeUnlocked::before, #badgeUnlocked{
+  background: green;
+}
+.toast .column i{
+  font-size: 1.75rem;
+}
+.toast.badgeUnlocked .column i{
+  color: green;
+}
+.toast .column span{
+  font-size: 1.07rem;
+  margin-left: 12px;
+}
+.toast i:last-child{
+  color: #aeb0d7;
+  cursor: pointer;
+  font-size: 2rem;
+}
+.toast i:last-child:hover{
+  color: black;
+}
